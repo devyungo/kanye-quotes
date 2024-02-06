@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img{
+            width: 200px;
+            height: 300px;
+        }
+        #kanyequote{
+            width: 200px;
+            word-wrap: break-word;
+        }
+    </style>
+    <img src="" alt="" id="img"><br>
+    <div id="kanyequote"></div><br>
+    <button onclick="getQuote()">transcend</button>
+
+</head>
+
+<body>
+    <script>
+
+        const url = 'https://api.kanye.rest/'
+
+        const quoteSpan = document.getElementById("kanyequote");
+        const img = document.getElementById("img");
+        
+
+        function getQuote() {
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    quoteSpan.innerHTML = '"' + data.quote + '" - Kanye West'
+                    img.src =  "img/" + Math.floor(Math.random() * 19) + ".png";
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        }
+        getQuote()
+
+    </script>
+</body>
+
+</html>
